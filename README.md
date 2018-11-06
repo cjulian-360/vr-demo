@@ -3,7 +3,7 @@
 - [Work Completed](#work-completed)
 - [Work Remaining](#work-remaining)
 - [Query Examples](#query-examples)
-  - [getDealerInfo](#getdealerinfo
+  - [getDealerInfo](#getdealerinfo)
 
 ## Work Completed
 - converted all vr-egg queries to use ADM, almost
