@@ -6,6 +6,7 @@
   - [getDealerInfo](#getdealerinfo)
   - [getDealerDistributors](#getdealerdistributors)
   - [getDealersAccumulations](#getdealersAccumulations)
+  - [Query Notes](#query-notes)
 - [Web-API to Egg-GRPC](#web-api-to-egg-grpc)
 
 ## Work Completed
@@ -300,6 +301,13 @@ WHERE
   AND dpo.promotionalofferid = :promotionalOfferId
   AND dr.resellerid = :dealerResellerId
 ```
+
+### Query Notes
+- in general new queries were significantly longer with more joins
+- old queries don't map one-to-one with new:
+  - introduced a Data Access Layer with queries to retrieve commonly needed sets of data
+  - introduced a Business Logic Layer that stitched together results from multipl queries
+- shout-out to DNA team for helping us out
 
 ## Web-API to Egg-GRPC
 Add a few screenshots of Postman to showcase end-to-end request from vr-web API to vr-egg GRPC + ADM
