@@ -1,7 +1,7 @@
 # VR Sprint Review
 
 ## Work Completed
-- converted almost all vr-egg queries to use ADM
+- converted all vr-egg queries to use ADM, almost
 - converted vr-egg to a gRPC service
 - added vr-web Rest API that calls vr-egg gRPC service
 
