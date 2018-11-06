@@ -1,4 +1,9 @@
-# VR Sprint Review
+# VR Portal Sprint Review
+
+- [Work Completed](#work-completed)
+- [Work Remaining](#work-remaining)
+- [Query Examples](#query-examples)
+  - [getDealerInfo](#getdealerinfo
 
 ## Work Completed
 - converted all vr-egg queries to use ADM, almost
@@ -114,6 +119,112 @@ WHERE
   rs.isactive = true
   AND rs.expireddatetime IS NULL
   AND rs.resellerid = :dealerResellerId
+```
+
+### getDealerDistributors
+```SQL
+-- old
+SELECT RS.External_id
+    , RS.LegalName
+    , RSCL.Address1
+    , RSCL.Address2
+    , RSCL.City
+    , RSCL.State
+    , RSCL.ZipCode
+    , RSCL.Country
+    , RRR.RelationshipType
+    , RRR.RelationshipSet
+FROM ResellerRewardee_Relationship RRR
+LEFT JOIN Reseller RS ON
+    RS.External_id = RRR.ResellerExternal_id
+LEFT JOIN Reseller_CoreLookup RSCL ON
+    RS.External_id = RSCL.External_id
+INNER JOIN User_CoreLookup UCL ON
+    UCL.Internal_id = :legacyId
+    AND (
+        UCL.ResellerInternal_id IS NULL
+        OR RSCL.Internal_id = UCL.ResellerInternal_id
+    )
+WHERE
+    RRR.RewardeeExternal_id = :dealerId
+    AND RRR.Active = 1
+    AND NOW() >= RRR.EffectiveDate
+    AND (
+        RRR.InEffectiveDate IS NULL
+        OR NOW() <= RRR.InEffectiveDate
+    )
+    AND RRR.IsException = 0
+```
+
+```SQL
+-- new
+SELECT
+    xrscatdist.value as relationshiptype
+    , rsdist.resellerid as internalid
+    , org.legalname as legalname
+    , sa.addressline1 as address1
+    , sa.addressline2 as address2
+    , sa.city as city
+    , sa.subdivisionname as state
+    , sa.postalcode as zipcode
+    , sa.country as country
+FROM dimreseller rsdealer
+INNER JOIN dimsaleschannellevel scldealer ON
+    scldealer.channelparticipantkey = rsdealer.channelparticipantkey
+    AND scldealer.isactive = true
+    AND scldealer.expireddatetime IS NULL
+INNER JOIN dimxref xrscprdealer ON
+    xrscprdealer.xrefidkey = scldealer.saleschannelparticipantrolexrefkey
+    AND xrscprdealer.isactive = true
+    AND xrscprdealer.expireddatetime IS NULL
+    AND xrscprdealer.value = 'Dealer'
+INNER JOIN BridgeSalesChannelLevelHierarchy sclhdealerdist ON
+    sclhdealerdist.saleschannellevelkey = scldealer.saleschannellevelkey
+    AND sclhdealerdist.isactive = true
+INNER JOIN dimsaleschannellevel scldist ON
+    scldist.saleschannellevelkey = sclhdealerdist.parentsaleschannellevelkey
+    AND scldealer.isactive = true
+    AND scldealer.expireddatetime IS NULL
+INNER JOIN dimsaleschannel sc ON
+    sc.saleschannelkey = scldist.saleschannelkey
+    AND sc.saleschannelkey = scldealer.saleschannelkey
+    AND sc.isactive = true
+    AND sc.expireddatetime IS NULL
+INNER JOIN dimrebatesponsor rs ON
+    rs.rebatesponsorkey = sc.rebatesponsorkey
+    AND rs.isactive = true
+    AND rs.expireddatetime IS NULL
+    AND rs.rebatesponsorid = :rebateSponsorId
+INNER JOIN dimxref xrscprdist ON
+    xrscprdist.xrefidkey = scldist.saleschannelparticipantrolexrefkey
+    AND xrscprdist.isactive = true
+    AND xrscprdist.expireddatetime IS NULL
+    AND xrscprdist.value = 'Distributor'
+INNER JOIN dimxref xrscatdist ON
+    xrscatdist.xrefidkey = scldist.saleschannelassignmenttypexrefkey
+    AND xrscatdist.isactive = true
+    AND xrscatdist.expireddatetime IS NULL
+INNER JOIN dimreseller rsdist ON
+    rsdist.channelparticipantkey = scldist.channelparticipantkey
+    AND rsdist.isactive = true
+    AND rsdist.expireddatetime IS NULL
+INNER JOIN dimxref xrdisttype ON
+    xrdisttype.xrefidkey = rsdist.resellertypexrefkey
+    AND xrdisttype.value = 'Distributor'
+    AND xrdisttype.isactive = true
+    AND xrdisttype.expireddatetime IS NULL
+INNER JOIN dimorganization org ON
+    org.organizationkey = rsdist.organizationkey
+    AND org.isactive = true
+    AND org.expireddatetime IS NULL
+LEFT JOIN dimaddress sa ON
+    sa.addresskey = org.primarystreetaddresskey
+    AND sa.isactive = true
+    AND sa.expireddatetime IS NULL
+WHERE
+    rsdealer.isactive = true
+    AND rsdealer.expireddatetime IS NULL
+    AND rsdealer.resellerid = :dealerResellerId
 ```
 
 ### getDealersAccumulationsForPromotionPeriod
