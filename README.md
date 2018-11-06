@@ -4,6 +4,8 @@
 - [Work Remaining](#work-remaining)
 - [Query Examples](#query-examples)
   - [getDealerInfo](#getdealerinfo)
+  - [getDealerDistributors](#getdealerdistributors)
+  - [getDealersAccumulations](#getdealersAccumulations)
 
 ## Work Completed
 - converted all vr-egg queries to use ADM, almost
@@ -227,7 +229,7 @@ WHERE
     AND rsdealer.resellerid = :dealerResellerId
 ```
 
-### getDealersAccumulationsForPromotionPeriod
+### getDealersAccumulations
 ```SQL
 -- old
 SELECT DISTINCT
