@@ -6,9 +6,10 @@
   - [getDealerInfo](#getdealerinfo)
   - [getDealerDistributors](#getdealerdistributors)
   - [getDealersAccumulations](#getdealersAccumulations)
+- [Web-API to Egg-GRPC](#web-api-to-egg-grpc)
 
 ## Work Completed
-- converted all vr-egg queries to use ADM, almost
+- converted all vr-egg queries to use ADM (almost)
 - converted vr-egg to a gRPC service
 - added vr-web Rest API that calls vr-egg gRPC service
 
@@ -299,3 +300,6 @@ WHERE
   AND dpo.promotionalofferid = :promotionalOfferId
   AND dr.resellerid = :dealerResellerId
 ```
+
+## Web-API to Egg-GRPC
+Add a few screenshots of Postman to showcase end-to-end request from vr-web API to vr-egg GRPC + ADM
