@@ -235,17 +235,17 @@ WHERE
 ```SQL
 -- old
 SELECT DISTINCT
-  relationship_types.Priority AS priority,
-  IFNULL(units_per_relationship.total, 0) AS total,
-  IFNULL(units_per_relationship.totalEligible, 0) AS qualified
+  rar.Priority AS priority,
+  IFNULL(rpa.total, 0) AS total,
+  IFNULL(rpa.totalEligible, 0) AS qualified
 FROM
-  Relationship_AllowedRate relationship_types
+  Relationship_AllowedRate rar
 LEFT JOIN
-  RewardeePeriodAllowedUnits AS units_per_relationship
+  RewardeePeriodAllowedUnits rpa
 ON
-  units_per_relationship.RelationshipTypeId = relationship_types.RelationshipType
-  AND units_per_relationship.RewardeeExternal_id = :dealerId
-  AND units_per_relationship.PeriodId = :periodId
+  rpa.RelationshipTypeId = rar.RelationshipType
+  AND rpa.RewardeeExternal_id = :dealerId
+  AND rpa.PeriodId = :periodId
 ```
 
 ```SQL
