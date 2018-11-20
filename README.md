@@ -12,7 +12,7 @@
 
 ## Work Remaining
 - hook up dealer dashboard UI
-- login through prof
+- login / authentication
 
 ## Demo
 - UI to DB end-to-end, dealer list
