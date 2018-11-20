@@ -1,16 +1,16 @@
 # VR Portal Sprint Review
 
-## Previous Review
+## Previous review
 - converted most queries to use ADM
 - added most web API endpoints to point to gRPC
 - no UI layer
 
-## Previous Sprint
+## What we did
 - converted remaining vr-egg queries to use ADM
 - added remaining vr-web API endpoints to point to gRPC
 - hooked up UI layer to new API for dealer-list and static pages
 
-## Work Remaining
+## Work remaining
 - hook up the rest of dealer dashboard UI
 
 ## Demo
