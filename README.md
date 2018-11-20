@@ -11,10 +11,9 @@
 - hooked up UI layer to new API for dealer-list and static pages
 
 ## Work Remaining
-- hook up dealer dashboard UI
-- login / authentication
+- hook up the rest of dealer dashboard UI
 
 ## Demo
-- UI to DB end-to-end, dealer list
+- UI to DB end-to-end, dealer list, dashboard header
 
 
