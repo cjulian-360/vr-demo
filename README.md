@@ -8,7 +8,7 @@
 ## What we did
 - converted remaining vr-egg queries to use ADM
 - added remaining vr-web API endpoints to point to gRPC
-- hooked up UI layer to new API for dealer-list and static pages
+- started hooking up UI layer to new API
 
 ## Work remaining
 - hook up the rest of dealer dashboard UI
