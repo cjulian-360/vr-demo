@@ -7,11 +7,12 @@
 - hooked up the rest of dealer dashboard UI to ADM
 - started sales upload UI
 
-## Next Sprint
+## Current Sprint
 - sales upload backend work
   - upload to s3
   - rabbit message to ingress
   - etc.
+- test/uat environment issues
 
 ## Demo
 - login and authentication: https://chell-starforce.test.360incentives.io/login/
