@@ -1,19 +1,22 @@
 # VR Portal Sprint Review
 
-## Previous review
-- converted most queries to use ADM
-- added most web API endpoints to point to gRPC
-- no UI layer
+## Last Sprint Review
+- dealer dashboard partially hooked up
 
-## What we did
-- converted remaining vr-egg queries to use ADM
-- added remaining vr-web API endpoints to point to gRPC
-- started hooking up UI layer to new API
+## Last Sprint
+- hooked up the rest of dealer dashboard UI to ADM
+- started sales upload UI
 
 ## Work remaining
-- hook up the rest of dealer dashboard UI
+- sales upload backend work
+  - upload to s3
+  - rabbit message to ingress
+  - etc.
 
 ## Demo
-- UI to DB end-to-end, dealer list, dashboard header
+- login and authentication: https://chell-starforce.test.360incentives.io/login/
+- dealer dashboard connected to ADM
+- sales upload page
+- file upload 360ui component: http://localhost:6006/?selectedKind=FileUploader&selectedStory=File%20upload%20for%20CSV&full=0&addons=1&stories=1&panelRight=0&addonPanel=REACT_STORYBOOK%2Freadme%2Fpanel
 
 
