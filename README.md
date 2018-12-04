@@ -7,7 +7,7 @@
 - hooked up the rest of dealer dashboard UI to ADM
 - started sales upload UI
 
-## Next Spring
+## Next Sprint
 - sales upload backend work
   - upload to s3
   - rabbit message to ingress
