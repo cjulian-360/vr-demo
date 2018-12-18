@@ -1,24 +1,19 @@
 # VR Portal Sprint Review
 
 ## Last Sprint Review
-- dealer dashboard partially hooked up
+- dealer dashboard UI connected to ADM
+- sales upload UI with download component from storybook
 
 ## Last Sprint
-- hooked up the rest of dealer dashboard UI to ADM
-- started sales upload UI
+- test environment up
+- submitted sales page with mock grpc service
+- sales upload UI with integrated download component
 
 ## Current Sprint
-- sales upload backend work
-  - upload to s3
-  - rabbit message to ingress
-  - etc.
-- test/uat environment issues
+- continuing with ingress
+- hankook/mickey thompson 2019
 
 ## Demo
-- login and authentication: https://chell-starforce.test.360incentives.io/login/
-- 92eb478d-a8c9-443d-877a-f4532c33a130@fake.com
-- dealer dashboard connected to ADM
-- sales upload page
-- file upload 360ui component: http://localhost:6006/?selectedKind=FileUploader&selectedStory=File%20upload%20for%20CSV&full=0&addons=1&stories=1&panelRight=0&addonPanel=REACT_STORYBOOK%2Freadme%2Fpanel
+- https://vr-web-starforce.test.360incentives.io/
 
 
